@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Help and support - Contact us{% endblock title %}
+
+{% block body %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        background-image: url("/static/background_gallary.jpg");
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffffbb;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        resize: none;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% if success %}
+<div class="alert alert-warning" role="alert">
+    <strong>Thanks!</strong> We will get back to you soon
+</div>
+{% endif %}
+<div class="container">
+    
+    <h1>Contact Us</h1>
+    <form action="/contact" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="text" name="email" placeholder="Your Email" required>
+        <textarea name="descp" rows="5" placeholder="Your Message" required></textarea>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock body %}
